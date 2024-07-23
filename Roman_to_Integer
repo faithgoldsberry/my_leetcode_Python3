@@ -1,0 +1,105 @@
+"""
+#Passed test cases 1 and 2 but not big numbers (case 3)
+    def romanToInt(self, s: str) -> int:
+        numbers = []
+        for i in s:
+            match i:
+                case "I":
+                    i = 1
+                    numbers.append(i)
+                case "V":
+                    i = 5
+                    numbers.append(i)
+                case "X":
+                    i = X
+                    numbers.append(i)
+                case "L":
+                    i = 50
+                    numbers.append(i)
+                case "C":
+                    i = 100
+                    numbers.append(i)
+                case "D":
+                    i = 500
+                    numbers.append(i)
+                case "M":
+                    i = 1000
+                    numbers.append(i)
+        number = sum(numbers)
+        numberFour = "I" + "V"
+        if numberFour in s:
+            number = number - 4
+        numberNine = "I" + "X"
+        if numberNine in s:
+            number = number - 9
+        numberForty = "X" + "L"
+        if numberForty in s:
+            number = number - 40
+        numberNinety = "X" + "C"
+        if numberNinety in s:
+            number = number - 90
+        numberFourHundred = "C" + "D"
+        if numberFourHundred in s:
+            number = number - 400
+        numberNineHundred = "C" + "M"
+        if numberNineHundred in s:
+            number = number - 900
+
+        return number
+"""
+
+"""
+#Passed test cases 1 but not 2 or 3
+    def romanToInt(self, s: str) -> int:
+        numbers = []
+        for i in range(1,len(s)+1):
+            if i < i + 1:
+                larger = i + 1
+                smaller = i
+                i = larger - smaller
+                numbers.append(i)
+            else:
+                numbers.append(i)
+
+        for i in numbers:
+            match i:
+                case "I":
+                    i = 1
+                    numbers.append(i)
+                case "V":
+                    i = 5
+                    numbers.append(i)
+                case "X":
+                    i = X
+                    numbers.append(i)
+                case "L":
+                    i = 50
+                    numbers.append(i)
+                case "C":
+                    i = 100
+                    numbers.append(i)
+                case "D":
+                    i = 500
+                    numbers.append(i)
+                case "M":
+                    i = 1000
+                    numbers.append(i)
+
+        number = sum(numbers)
+        return number
+"""
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        dictionary = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        total = 0
+        for i in range(len(s)):
+            if i < len(s) - 1:
+                total = total + dictionary[s[i]]
+                if dictionary[s[i]] < dictionary[s[i+1]]:
+                    total = total - 2 * dictionary[s[i]]
+            else: 
+                total = total + dictionary[s[i]]
+
+        
+        return total
